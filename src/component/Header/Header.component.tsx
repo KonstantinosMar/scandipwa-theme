@@ -4,8 +4,8 @@ import {
     MyAccountOverlay,
 } from 'SourceComponent/Header/Header.component';
 import { ReactElement } from 'Type/Common.type';
-import Menu from 'Component/Menu';
 import MenuIcon from 'Component/MenuIcon';
+import MobileMenuComponent from "Component/Header/MobileMenu.component";
 
 export {
     CartOverlay,
@@ -18,25 +18,25 @@ export class HeaderComponent extends SourceHeaderComponent {
         ...this.renderMap,
     };
 
-    renderMenu(): ReactElement {
-        const { isMenuOpen } = this.props;
+    state = {
+        isMenuVisible: false,
+    };
 
-        if (!isMenuOpen) {
-            return null;
-        }
+    toggleMenu = () => {
+        this.setState((prevState) => ({
+            isMenuVisible: !prevState.isMenuVisible,
+        }));
 
-        return <Menu />;
-    }
+        console.log(this.state.isMenuVisible)
+    };
 
     renderMenuButton(): ReactElement {
-        const { onBurgerMenuClick } = this.props;
-
         return (
             <button
                 block="Header"
                 elem="BurgerButton"
                 tabIndex={0}
-                onClick={onBurgerMenuClick}
+                onClick={this.toggleMenu}
                 aria-label="Open menu"
                 id="burgerButton"
             >
@@ -44,6 +44,17 @@ export class HeaderComponent extends SourceHeaderComponent {
             </button>
         );
     }
+
+    render(): ReactElement {
+        const {isMenuVisible} = this.state
+        return (
+            <>
+                {super.render()}
+                {isMenuVisible && <MobileMenuComponent />}
+            </>
+        );
+    }
+
 }
 
 export default HeaderComponent;
