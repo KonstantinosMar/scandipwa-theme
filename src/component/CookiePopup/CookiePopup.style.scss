@@ -1,0 +1,38 @@
+.CookiePopup {
+    --cookie-banner-font-size: 24px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    background-color: black;
+    padding: 40px 20px;
+
+    @include mobile {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    &-Content {
+        color: white;
+        font-size: var(--cookie-banner-font-size);
+        line-height: 25px;
+        flex: .9;
+        margin: 0;
+        a {
+
+            font-size: var(--cookie-banner-font-size);  
+        }
+    }
+
+    &-CTA {
+        font-size: var(--cookie-banner-font-size);
+        padding: 20px 40px;
+        background-color: var(--primary-base-color);
+        width: 100%;
+        flex: 0.1;
+        text-align: center;
+    }
+}
