@@ -1,12 +1,17 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Menu from 'Component/Menu';
+import {MenuContext} from "Component/Header/MenuContext";
+import './Header.override.style.scss'
 
-const MobileMenuComponent = () => {
+const MobileMenu = () => {
+    const { isMenuVisible } = useContext(MenuContext);
+
+    console.log(isMenuVisible)
     return (
-        <div>
-            <Menu />
+        <div className={`Header-MobileMenu ${isMenuVisible ? 'Header-MobileMenu_display' : ''}`}>
+            {<Menu />}
         </div>
     );
 };
 
-export default MobileMenuComponent;
+export default MobileMenu;
